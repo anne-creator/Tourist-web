@@ -22,7 +22,7 @@ const ProductImageComponent: React.FC<PropsType> = ({
 }) => {
   return (
     <Link to={`detail/${id}`}>
-      {size == "large" ? (
+      {size === "large" ? (
         <Image src={imageSrc} height={285} width={490} />
       ) : (
         <Image src={imageSrc} height={120} width={240} />
