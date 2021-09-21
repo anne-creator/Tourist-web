@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import styles from "./App.module.css";
-
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HomePage, SignInPage, RegisterPage, DetailPage } from './pages';
 function App() {
   return (
     <div className={styles.App}>
-      <header className={styles['App-header']}>
-        <img src={logo} className={styles['App-logo']} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className={styles['App-link']}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        {/*Switch only render single page, exact only render the exact path. */}
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/signIn' component={SignInPage} />
+          <Route exact path='/register' component={RegisterPage} />
+          <Route path="/detail/:touristRouteId" component={DetailPage} />
+          <Route render={() => <h1>404 not found 页面去火星了 ！</h1>} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
-
 export default App;
