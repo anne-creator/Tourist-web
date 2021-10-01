@@ -8,7 +8,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  loading: true,
+  loading: false,
   error: null,
   token: null,
 };

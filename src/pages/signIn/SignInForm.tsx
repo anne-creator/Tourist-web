@@ -4,6 +4,7 @@ import { signIn } from '../../redux/user/slice'
 import { useDispatch } from 'react-redux'
 import { useSelector } from '../../redux/hooks'
 import { useHistory } from 'react-router-dom';
+import { useEffect } from "react";
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -20,11 +21,17 @@ export const SignInForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    if (jwt != null) {
+      console.log(`jwt: ${jwt}`);
+      history.push('/');
+    }
+  })
+
   const onFinish = (values: any) => {
     dispatch(signIn({
       email: values.username,
       password: values.password,
-
     }))
   };
 
@@ -62,7 +69,7 @@ export const SignInForm = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           Submit
         </Button>
       </Form.Item>
