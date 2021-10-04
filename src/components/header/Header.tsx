@@ -14,6 +14,7 @@ import {
   changeLanguageActionCreator,
 } from "../../redux/language/languageActions";
 import jwt_decode, { JwtPayload as DefaultJwtPayload } from 'jwt-decode'
+import { userSlice } from '../../redux/user/slice';
 
 interface Jwtpayload extends DefaultJwtPayload {
   username: string,
@@ -49,6 +50,14 @@ export const Header: React.FC = () => {
     }
   };
 
+  /** log out function 
+   * needs to clear jwt token through logout reducer 
+   */
+  const onLogout = () => {
+    dispatch(userSlice.actions.logOut())
+    history.push("/")
+  }
+
   return (
     <div className={styles["app-header"]}>
       {/* top-header */}
@@ -78,7 +87,7 @@ export const Header: React.FC = () => {
                 <Typography.Text strong>{username}</Typography.Text>
               </span>
               <Button>{t("header.shoppingCart")}</Button>
-              <Button>{t("header.signOut")}</Button>
+              <Button onClick={onLogout}> {t("header.signOut")}</Button>
             </Button.Group>
             :
             <Button.Group className={styles["button-group"]}>
