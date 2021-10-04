@@ -23,7 +23,6 @@ export const SignInForm = () => {
 
   useEffect(() => {
     if (jwt != null) {
-      console.log(`jwt: ${jwt}`);
       history.push('/');
     }
   })

@@ -36,7 +36,6 @@ type PropsType = RouteComponentProps & WithTranslation & ReturnType<typeof mapSt
 class HeaderComponnet extends React.Component<PropsType> {
 
   menuClickHandler = (e) => {
-    console.log(e);
     if (e.key === "new") {
       // 处理新语言添加action
       this.props.addLanguage("新语言", "new_lang");

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 interface UserState {
   loading: boolean;
   error: string | null;
@@ -18,14 +17,14 @@ export const signIn = createAsyncThunk(
   async (parameters:{
       email:string,
       password: string,
-
   }, thunkAPI) => {
     const { data } = await axios.post(
       `http://123.56.149.216:8080/auth/login`,{
         email: parameters.email,
-        password: parameters.password
+        password: parameters.password,
       }
     );
+    console.log(`data in user/slice : ${data}`)
     return data.token;
   }
 );
