@@ -19,6 +19,7 @@ const PrivateRoute = ({ component, isAuthenticated, ...rest }) => {
   return <Route render={routeComponent} {...rest} />;
 }
 function App() {
+  const jwt = useSelector(s => s.user.token)
   return (
     <div className={styles.App}>
       <BrowserRouter>
@@ -29,6 +30,7 @@ function App() {
           <Route exact path='/register' component={RegisterPage} />
           <Route path="/detail/:touristRouteId" component={DetailPage} />
           <Route path='/search/:keywords?' component={SearchPage} />
+          {/* <PrivateRoute isAuthenticated={jwt !== null} path="/shoppingCart" component={ShoppingCartPage} /> */}
           <Route render={() => <h1>404 not found 页面去火星了 ！</h1>} />
         </Switch>
       </BrowserRouter>
