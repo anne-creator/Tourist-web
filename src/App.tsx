@@ -5,7 +5,7 @@ import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage } from './pa
 import { Redirect } from "react-router-dom";
 import { useSelector } from "./redux/hooks";
 import { useDispatch } from "react-redux";
-import { getShoppingCart } from "./redux/shoppingCart/slice";
+// import { getShoppingCart } from "./redux/shoppingCart/slice";
 
 
 const PrivateRoute = ({ component, isAuthenticated, ...rest }) => {
