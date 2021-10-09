@@ -1,20 +1,18 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface ShoppingCartState {
+interface ShoppingCarttate {
   loading: boolean;
   error: string | null;
   items: any[];
 }
 
-const initialState: ShoppingCartState = {
+const initialState: ShoppingCarttate = {
   loading: true,
   error: null,
   items: [],
 };
 
-/** getShoppingCart
- */
 export const getShoppingCart = createAsyncThunk(
   "shoppingCart/getShoppingCart",
   async (jwt: string, thunkAPI) => {
@@ -30,15 +28,13 @@ export const getShoppingCart = createAsyncThunk(
   }
 );
 
-/** add ShoppingCart item
- */
- export const addShoppingCartItem = createAsyncThunk(
+export const addShoppingCartItem = createAsyncThunk(
   "shoppingCart/addShoppingCartItem",
-  async (parameters:{jwt: string,touristRouteId: string}, thunkAPI) => {
+  async (parameters: { jwt: string; touristRouteId: string }, thunkAPI) => {
     const { data } = await axios.post(
       `http://123.56.149.216:8080/api/shoppingCart/items`,
       {
-        touristRouteId:parameters.touristRouteId,
+        touristRouteId: parameters.touristRouteId,
       },
       {
         headers: {
@@ -50,12 +46,13 @@ export const getShoppingCart = createAsyncThunk(
   }
 );
 
-/**clear items at once */
 export const clearShoppingCartItem = createAsyncThunk(
   "shoppingCart/clearShoppingCartItem",
-  async (parameters:{jwt: string,itemIds: number[]}, thunkAPI) => {
+  async (parameters: { jwt: string; itemIds: number[] }, thunkAPI) => {
     return await axios.delete(
-      `http://123.56.149.216:8080/api/shoppingCart/items/(${parameters.itemIds.join(",")})`,
+      `http://123.56.149.216:8080/api/shoppingCart/items/(${parameters.itemIds.join(
+        ","
+      )})`,
       {
         headers: {
           Authorization: `bearer ${parameters.jwt}`,
@@ -63,7 +60,7 @@ export const clearShoppingCartItem = createAsyncThunk(
       }
     );
   }
-); 
+);
 
 export const shoppingCartSlice = createSlice({
   name: "shoppingCart",
